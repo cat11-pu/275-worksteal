@@ -1,8 +1,12 @@
-// workq.js：队列取放与窃取（基线：一律给空表）
+// workq.js：队列取放（不可变，返回新队列）
 export function pushJob(queue, job) {
-  return queue;
+  return (queue || []).concat([job]);
 }
 
 export function takeJob(queue, fromTail) {
-  return [queue, null];
+  const list = queue || [];
+  if (list.length === 0) return [list, null];
+  const next = list.slice();
+  const job = fromTail ? next.pop() : next.shift();
+  return [next, job];
 }
