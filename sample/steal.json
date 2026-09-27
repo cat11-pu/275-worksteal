@@ -1,0 +1,19 @@
+{
+  "budget": 1,
+  "empty_error_code": "E_EMPTY_QUEUE",
+  "self_error_code": "E_SELF_STEAL",
+  "event_error_code": "E_BAD_EVENT",
+  "state": { "queues": {}, "stolen": [], "ledger": [], "applied": [] },
+  "events": [
+    { "id": 1, "kind": "push", "worker": "w1", "job": "a" },
+    { "id": 2, "kind": "push", "worker": "w1", "job": "b" },
+    { "id": 3, "kind": "push", "worker": "w2", "job": "c" },
+    { "id": 4, "kind": "pop", "worker": "w1" },
+    { "id": 5, "kind": "steal", "from": "w1", "to": "w2" },
+    { "id": 6, "kind": "push", "worker": "w2", "job": "d" },
+    { "id": 7, "kind": "steal", "from": "w2", "to": "w1" },
+    { "id": 8, "kind": "push", "worker": "w1", "job": "e" },
+    { "id": 9, "kind": "pop", "worker": "w1" },
+    { "id": 10, "kind": "steal", "from": "w2", "to": "w1" }
+  ]
+}
