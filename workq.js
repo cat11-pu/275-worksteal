@@ -1,8 +1,10 @@
-// workq.js：队列取放与窃取（基线：一律给空表）
+// workq.js：队列取放与窃取（纯函数，不改入参）
 export function pushJob(queue, job) {
-  return queue;
+  return queue.concat([job]);
 }
 
 export function takeJob(queue, fromTail) {
-  return [queue, null];
+  if (!queue.length) return [queue.slice(), null];
+  if (fromTail) return [queue.slice(0, -1), queue[queue.length - 1]];
+  return [queue.slice(1), queue[0]];
 }
